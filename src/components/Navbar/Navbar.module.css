@@ -1,0 +1,17 @@
+.nav {
+  grid-area: n;
+  background-color: #E8F3FF;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.item {
+  margin-top: 20px;
+}
+
+.link {
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+}
