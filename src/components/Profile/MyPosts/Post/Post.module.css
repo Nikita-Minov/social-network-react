@@ -1,5 +1,9 @@
 .item {
-  color: greenyellow;
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  justify-content: space-between;
 }
 
 .item img {
