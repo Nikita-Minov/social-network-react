@@ -1,10 +1,11 @@
+import { NavLink } from "react-router-dom";
 import s from "./Header.module.css";
 
 const Header = () => {
   return (
     <header className={s.header} >
       <div className="wrapper">
-        <a href="#s" className={s.logo} >FaceVK</a>
+        <NavLink to="/news" className={s.logo}>FaceVK</NavLink>
       </div>
     </header>
   );
