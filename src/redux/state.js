@@ -7,6 +7,7 @@ let state = {
       { id: 2, post: 'Norm', likesCount: 12 },
       { id: 3, post: 'Norm', likesCount: 54 },
     ],
+    newPostText: "",
   },
   dialogsPage: {
     dialogs: [
@@ -49,6 +50,7 @@ let state = {
           'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
       },
     ],
+    newMessageText: '',
   },
   navBar: {
     friends: [
@@ -73,16 +75,43 @@ let state = {
   },
 };
 
-export let addPost = (postMessage) => {
+window.state = state;
+
+export let addPost = () => {
 
   let newPost = {
     id: 5,
-    post: postMessage,
+    post: state.profilePage.newPostText,
     likesCount: 0,
   };
 
   state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  rerenderEntireTree(state);
+
+}
+
+export let addMessage = (newDialogMessage) => {
+  let newMessage = {
+    id: 5,
+    message: newDialogMessage,
+    ava:
+      'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
+  };
+
+  state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessageText = '';
   rerenderEntireTree(state);
 }
 
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newMessage) => {
+  state.dialogsPage.newMessageText = newMessage;
+  rerenderEntireTree(state);
+}
+ 
 export default state;
