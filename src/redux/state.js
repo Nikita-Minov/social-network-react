@@ -1,6 +1,8 @@
-import { rerenderEntireTree } from "../render";
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPATE-NEW-POST-TEXT';
 
-let state = {
+let store = {
+  _state: {
   profilePage: {
     posts: [
       { id: 1, post: 'Hi, how are you?', likesCount: 54 },
@@ -73,45 +75,75 @@ let state = {
       },
     ],
   },
+  },
+  _callSubscriber() {
+    console.log('State changed');
+  },
+
+  getState() {
+    return this._state;
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  },
+  dispatch(action) {
+    if (action.type == 'ADD-POST') {
+      let newPost = {
+        id: 5,
+        post: this._state.profilePage.newPostText,
+        likesCount: 0,
+      };
+
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
+    } else if(action.type == 'UPATE-NEW-POST-TEXT') {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } else if (action.type == 'ADD-MESSAGE') {
+      let newMessage = {
+        id: 5,
+        message: action.newDialogMessage,
+        ava:
+          'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
+      };
+
+      this._state.dialogsPage.messages.push(newMessage);
+      this._state.dialogsPage.newMessageText = '';
+      this._callSubscriber(this._state);
+    } else if (action.type == 'UPDATE-NEW-MESSAGE-TEXT') {
+      this._state.dialogsPage.newMessageText = action.newMessage;
+      this._callSubscriber(this._state);
+    }
+  }
+}
+window.store = store;
+
+export const addPostActionCreator = () => {
+  return {
+    type: ADD_POST,
+  };
 };
 
-window.state = state;
-
-export let addPost = () => {
-
-  let newPost = {
-    id: 5,
-    post: state.profilePage.newPostText,
-    likesCount: 0,
+export const updateNewPostTextActionCreator = (text) => {
+  return {
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text,
   };
+};
 
-  state.profilePage.posts.push(newPost);
-  state.profilePage.newPostText = '';
-  rerenderEntireTree(state);
-
-}
-
-export let addMessage = (newDialogMessage) => {
-  let newMessage = {
-    id: 5,
-    message: newDialogMessage,
-    ava:
-      'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
+export const addMessageActionCreator = (text) => {
+  return {
+    type: 'ADD-MESSAGE',
+    newDialogMessage: text,
   };
+};
 
-  state.dialogsPage.messages.push(newMessage);
-  state.dialogsPage.newMessageText = '';
-  rerenderEntireTree(state);
-}
-
-export let updateNewPostText = (newText) => {
-  state.profilePage.newPostText = newText;
-  rerenderEntireTree(state);
-}
-
-export let updateNewMessageText = (newMessage) => {
-  state.dialogsPage.newMessageText = newMessage;
-  rerenderEntireTree(state);
-}
+export const onMessageChangeActionCreator = (text) => {
+  return {
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    newMessage: text,
+  };
+};
  
-export default state;
+export default store;
