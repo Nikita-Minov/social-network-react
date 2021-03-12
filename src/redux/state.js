@@ -1,5 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPATE-NEW-POST-TEXT';
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import navBarReducer from "./navBar-reducer";
 
 let store = {
   _state: {
@@ -87,63 +88,12 @@ let store = {
     this._callSubscriber = observer;
   },
   dispatch(action) {
-    if (action.type == 'ADD-POST') {
-      let newPost = {
-        id: 5,
-        post: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    } else if(action.type == 'UPATE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type == 'ADD-MESSAGE') {
-      let newMessage = {
-        id: 5,
-        message: action.newDialogMessage,
-        ava:
-          'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
-      };
-
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._callSubscriber(this._state);
-    } else if (action.type == 'UPDATE-NEW-MESSAGE-TEXT') {
-      this._state.dialogsPage.newMessageText = action.newMessage;
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.navBar = navBarReducer(this._state.navBar, action);
+    this._callSubscriber(this._state);
   }
 }
 window.store = store;
-
-export const addPostActionCreator = () => {
-  return {
-    type: ADD_POST,
-  };
-};
-
-export const updateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-  };
-};
-
-export const addMessageActionCreator = (text) => {
-  return {
-    type: 'ADD-MESSAGE',
-    newDialogMessage: text,
-  };
-};
-
-export const onMessageChangeActionCreator = (text) => {
-  return {
-    type: 'UPDATE-NEW-MESSAGE-TEXT',
-    newMessage: text,
-  };
-};
  
 export default store;
