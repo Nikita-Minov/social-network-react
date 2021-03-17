@@ -5,9 +5,10 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
 
-  let postsElements = props.posts.map(p => {
+  let postsElements = props.profilePage.posts.map(p => {
     return (
       <Post
+        key={p.id}
         post={p.post}
         likesCount={p.likesCount}
         id={p.id}
@@ -23,7 +24,6 @@ const MyPosts = (props) => {
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    debugger;
     props.updateNewPostText(text);
   }
 

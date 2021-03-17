@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Friends = (props) => {
   let friendList = props.friends.map((friend) => {
-    return <Friend name={friend.name} avatar={friend.avatar} />;
+    return <Friend name={friend.name} key={friend.id} avatar={friend.avatar} />;
   });
 
   return (

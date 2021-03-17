@@ -5,12 +5,12 @@ import React from 'react';
 
 const Dialogs = (props) => {
   
-  let dialogsElement = props.dialogs.map( d => {
-    return <DialogItem ava={d.ava} name={d.name} id={d.id} />
+  let dialogsElement = props.dialogsPage.dialogs.map( d => {
+    return <DialogItem ava={d.ava} key={d.id} name={d.name} id={d.id} />
   });
 
-  let messagesElements = props.messages.map( m => {
-    return <Message ava={m.ava} message={m.message} id={m.id} />;
+  let messagesElements = props.dialogsPage.messages.map( m => {
+    return <Message ava={m.ava} key={m.id} message={m.message} id={m.id} />;
   });
 
   let newMessage = React.createRef();
@@ -32,7 +32,7 @@ const Dialogs = (props) => {
         {messagesElements}
         <textarea
           onChange={onMessageChange}
-          value={props.newMessageText}
+          value={props.dialogsPage.newMessageText}
           ref={newMessage}
         />
         <button onClick={addMessage}>Отправить</button>
