@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     dialogs: [
@@ -42,7 +41,6 @@ let initialState = {
           'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
       },
     ],
-    newMessageText: '',
   };
   
 const dialogsReducer = (state = initialState, action) => {
@@ -54,7 +52,7 @@ const dialogsReducer = (state = initialState, action) => {
          messages: [...state.messages]};
       let newMessage = {
       id: 5,
-      message: action.newDialogMessage,
+      message: action.newMessage,
       ava:
         'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg',
       };
@@ -63,30 +61,15 @@ const dialogsReducer = (state = initialState, action) => {
       stateCopy.newMessageText = '';
       return stateCopy;
   }
-    case UPDATE_NEW_MESSAGE_TEXT: {
-
-      let stateCopy = {
-        ...state,
-        newMessageText: action.newMessage
-      }
-      return stateCopy;
-    }
     default:
       return state;
   }
 }
 
-export const addMessageActionCreator = (text) => {
+export const addMessageActionCreator = (message) => {
   return {
     type: ADD_MESSAGE,
-    newDialogMessage: text,
-  };
-};
-
-export const onMessageChangeActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newMessage: text,
+    newMessage: message,
   };
 };
 

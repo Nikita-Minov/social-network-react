@@ -1,6 +1,7 @@
 import s from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader'
 import userPhoto from '../../../assets/img/user.jpg';
+import ProfileStatus from './ProfileStatus'
 
 
 const ProfileInfo = (props) => {
@@ -12,15 +13,16 @@ const ProfileInfo = (props) => {
   return (
     <div>
       <div>
-        <img
+        {/* <img
           className={s.ava}
           src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-        />
+        /> */}
       </div>
       <div className={s.descriptionBlock}>
         <img src={props.profile.photos.small == null ? userPhoto: props.profile.photos.small} />
         <h1>{props.profile.fullName}</h1>
         <h2>{props.profile.lookingForAJob ? 'Ищет работу' : 'Уже работает'}</h2>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         <h3>Contacts</h3>
         <ul>
           <li>vk: {props.profile.contacts.vk}</li>
