@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/react-social-app-view/static/css/main.21422a48.chunk.css",
+    "main.js": "/react-social-app-view/static/js/main.1a63a2e4.chunk.js",
+    "main.js.map": "/react-social-app-view/static/js/main.1a63a2e4.chunk.js.map",
+    "runtime-main.js": "/react-social-app-view/static/js/runtime-main.705c650e.js",
+    "runtime-main.js.map": "/react-social-app-view/static/js/runtime-main.705c650e.js.map",
+    "static/js/2.602fe269.chunk.js": "/react-social-app-view/static/js/2.602fe269.chunk.js",
+    "static/js/2.602fe269.chunk.js.map": "/react-social-app-view/static/js/2.602fe269.chunk.js.map",
+    "static/css/3.b2cb8d56.chunk.css": "/react-social-app-view/static/css/3.b2cb8d56.chunk.css",
+    "static/js/3.f19c1681.chunk.js": "/react-social-app-view/static/js/3.f19c1681.chunk.js",
+    "static/js/3.f19c1681.chunk.js.map": "/react-social-app-view/static/js/3.f19c1681.chunk.js.map",
+    "static/css/4.1a889164.chunk.css": "/react-social-app-view/static/css/4.1a889164.chunk.css",
+    "static/js/4.c319709c.chunk.js": "/react-social-app-view/static/js/4.c319709c.chunk.js",
+    "static/js/4.c319709c.chunk.js.map": "/react-social-app-view/static/js/4.c319709c.chunk.js.map",
+    "static/js/5.fbe084ed.chunk.js": "/react-social-app-view/static/js/5.fbe084ed.chunk.js",
+    "static/js/5.fbe084ed.chunk.js.map": "/react-social-app-view/static/js/5.fbe084ed.chunk.js.map",
+    "index.html": "/react-social-app-view/index.html",
+    "static/css/3.b2cb8d56.chunk.css.map": "/react-social-app-view/static/css/3.b2cb8d56.chunk.css.map",
+    "static/css/4.1a889164.chunk.css.map": "/react-social-app-view/static/css/4.1a889164.chunk.css.map",
+    "static/css/main.21422a48.chunk.css.map": "/react-social-app-view/static/css/main.21422a48.chunk.css.map",
+    "static/js/2.602fe269.chunk.js.LICENSE.txt": "/react-social-app-view/static/js/2.602fe269.chunk.js.LICENSE.txt",
+    "static/media/load.f5e936cc.svg": "/react-social-app-view/static/media/load.f5e936cc.svg",
+    "static/media/user.jpg": "/react-social-app-view/static/media/user.43ebe323.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.705c650e.js",
+    "static/js/2.602fe269.chunk.js",
+    "static/css/main.21422a48.chunk.css",
+    "static/js/main.1a63a2e4.chunk.js"
+  ]
+}
