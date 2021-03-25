@@ -5,15 +5,26 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 import Friends from './components/Friends/Friends';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
+// import ProfileContainer from './components/Profile/ProfileContainer';
 import Login from './components/Login/Login';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { initializeApp } from './redux/app-reducer';
 import { connect } from 'react-redux';
 import Preloader from './components/common/Preloader/Preloader';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from './redux/redux-store';
+import {withSuspense} from './hoc/withSuspense';
+
+const DialogsContainer = React.lazy(() =>
+  import('./components/Dialogs/DialogsContainer')
+);
+
+const ProfileContainer = React.lazy(() =>
+  import('./components/Profile/ProfileContainer')
+);
 
 class App extends React.Component {
   componentDidMount() {
@@ -31,11 +42,11 @@ class App extends React.Component {
           <div className="app-wrapper-content">
             <Route
               path="/dialogs"
-              render={() => <DialogsContainer store={this.props.store} />}
+              render={withSuspense(DialogsContainer)}
             />
             <Route
               path="/profile/:userId?"
-              render={() => <ProfileContainer store={this.props.store} />}
+              render={withSuspense(ProfileContainer)}
             />
             <Route path="/news" render={() => <News />} />
             <Route path="/users" render={() => <UsersContainer />} />
@@ -54,4 +65,16 @@ const MapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
 
-export default connect(MapStateToProps, { initializeApp })(App);
+let AppContainer = connect(MapStateToProps, { initializeApp })(App);
+
+const SamuraiJSApp = (props) => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
+export default SamuraiJSApp;

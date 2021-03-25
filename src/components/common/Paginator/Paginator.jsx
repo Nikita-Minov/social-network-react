@@ -8,7 +8,6 @@ let Paginator = ({ totalUsersCount, pageSize, currentPage, onPageChanged }) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
   return (
     <div>
       <div>
